@@ -16,16 +16,16 @@ export default createStore({
             state.count += value
             state.lastMutation = 'incrementBy'
         },
-        setLoading() {
-            this.state.isLoading = !this.state.isLoading
+        setLoading(state, value) {
+            state.isLoading = value
         }
     },
     actions: {
         async incrementRandomInt(context) {
-            context.commit('setLoading')
+            context.commit('setLoading', true)
             const randomInt = await getRandomInt()
             context.commit('incrementBy', randomInt)
-            context.commit('setLoading')
+            context.commit('setLoading', false)
         }
     }
 })
